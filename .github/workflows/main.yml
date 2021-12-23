@@ -31,9 +31,22 @@ jobs:
         name: Package
         path: build/libs/*.jar
         
-  deploy:
+  deploy-dev:
     if: github.event_name != 'pull_request'
     needs: build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Download JAR
+      uses: actions/download-artifact@v2
+      with:
+        name: Package
+    - name: Deploy to EB
+      run: "ls -la"
+      
+  deploy-staging:
+    if: github.event_name != 'pull_request'
+    needs: deploy-dev
     runs-on: ubuntu-latest
     
     steps:
