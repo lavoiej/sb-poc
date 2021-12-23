@@ -16,5 +16,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Download artifact
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        # Required, workflow file name or ID
+        workflow: main.yml
+        workflow_conclusion: success
+        branch: master
+        name: Package
+        search_artifacts: true
+    - name: Build with Gradle
+      run: "echo ${{ github.event.inputs.logLevel }}"
     - name: Build with Gradle
       run: "ls -la"
