@@ -25,10 +25,8 @@ jobs:
       with:
         arguments: build
     
-    - uses: actions/upload-artifact@v2
+    - name: Upload generated artifact
+      uses: actions/upload-artifact@v2
       with:
         name: Package
-        path: build/libs
-        
-    - name: machine echo folder
-      run : "ls -la"
+        path: build/libs/*.jar
