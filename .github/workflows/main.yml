@@ -32,6 +32,7 @@ jobs:
         path: build/libs/*.jar
         
   sonar:
+    if: ${{ false }}
     name: code analysis
     needs: build
     runs-on: ubuntu-latest
